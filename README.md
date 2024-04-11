@@ -1,1 +1,3 @@
 # GUIserial_python
+
+使いやすいGUI形式のserial通信モジュールを作成したい
