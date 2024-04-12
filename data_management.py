@@ -21,6 +21,22 @@ class DataManager:
         # この機能を実装するには、DataCommunicationからデータを受け取る方法が必要です。
         # 例えば、DataCommunicationにコールバック関数を登録し、新しいデータがあるたびにこの関数を呼び出すようにすることができます。
 
+        # 送信データ入力フィールド
+        self.send_data_entry = tk.Entry(self.frame, width=30)
+        self.send_data_entry.pack(pady=5)
+
+        # 送信ボタン
+        self.send_button = tk.Button(self.frame, text="Send", command=self.send_data)
+        self.send_button.pack()
+    
+    def send_data(self):
+        """ユーザー入力を取得して送信する"""
+        data = self.send_data_entry.get()  # 入力フィールドからテキストを取得
+        if data:  # テキストが空でない場合
+            self.data_comm.send_data(data)  # DataCommunicationインスタンスを使用してデータを送信
+            self.send_data_entry.delete(0, tk.END)  # 送信後、入力フィールドをクリア
+
+
     def display_data(self, data):
         """受信データをテキストエリアに表示する"""
         self.data_text.insert(tk.END, data + '\n')  # データの末尾に改行を追加
